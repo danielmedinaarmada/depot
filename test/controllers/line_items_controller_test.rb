@@ -1,6 +1,8 @@
 require 'test_helper'
 
 class LineItemsControllerTest < ActionDispatch::IntegrationTest
+  include CurrentCart
+
   setup do
     @line_item = line_items(:one)
   end
@@ -45,6 +47,6 @@ class LineItemsControllerTest < ActionDispatch::IntegrationTest
       delete line_item_url(@line_item)
     end
 
-    assert_redirected_to line_items_url
+    assert_redirected_to @line_item.cart
   end
 end
